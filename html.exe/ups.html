@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Interactive Quiz 🎉</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 24px;
+        }
+        .quiz-card {
+            background: #fafafa;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .option-btn {
+            background-color: white;
+            border: 2px solid #bdc3c7;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover {
+            background-color: #eef2f5;
+            border-color: #3498db;
+        }
+        /* Correct and Incorrect Styles */
+        .option-btn.correct {
+            background-color: #2ecc71 !important;
+            color: white !important;
+            border-color: #27ae60 !important;
+            font-weight: bold;
+        }
+        .option-btn.incorrect {
+            background-color: #e74c3c !important;
+            color: white !important;
+            border-color: #c0392b !important;
+        }
+        .disabled {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎯 Live Class Quiz Competition 🚀</h1>
+    <p style="text-align: center; font-size: 18px; color: #7f8c8d;">अपनी स्क्रीन पर सही विकल्प चुनकर उत्तर जानें!</p>
+
+    <div class="section-title">भाग 1: सामान्य ज्ञान (GK)</div>
+
+    <div class="quiz-card">
+        <div class="question">Q1. क्षेत्रफल के आधार पर भारत का सबसे छोटा राज्य कौन-सा है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, true)">(A) गोवा</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) सिक्किम</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) त्रिपुरा</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) राजस्थान</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q2. भारत की मीठे पानी की सबसे बड़ी झील कौन-सी है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) चिल्का झील</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) वुलर झील</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) गोविन्द बल्लभ पन्त सागर</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) गुरुदोमार झील</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q3. भारत का पूरब से पश्चिम तक का कुल विस्तार कितना है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) 3214 km</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) 2933 km</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) 15200 km</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) 7516.6 km</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q4. भारत के प्रथम लोकसभा अध्यक्ष कौन थे?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) सुकुमार सेन</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) जी. वी. मावलंकर</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) के. सी. नियोगी</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) सत्येन्द्र नाथ टैगोर</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q5. अंतरिक्ष में जाने वाले प्रथम भारतीय कौन थे?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, true)">(A) राकेश शर्मा</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) विक्रम साराभाई</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) डॉ. राजेन्द्र प्रसाद</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) हरिलाल जे. कनिया</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q6. भारत का पहला उपग्रह कौन-सा है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) रोहिणी</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) आर्यभट्ट</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) भास्कर</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) इनसैट</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q7. (PoK को शामिल करते हुए) भारत का सर्वोच्च पर्वत शिखर कौन-सा है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) कंचनजंघा</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) के-2 (K-2)</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) अनाइमुडी</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) नंदा देवी</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q8. जनसंख्या के आधार पर भारत का सबसे बड़ा राज्य कौन-सा है?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) बिहार</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) उत्तर प्रदेश</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) राजस्थान</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) सिक्किम</button>
+        </div>
+    </div>
+
+
+    <div class="section-title">Part 2: Computer Science</div>
+
+    <div class="quiz-card">
+        <div class="question">Q9. Which technique makes machines think and take decisions like human?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) Assembler</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) Compiler</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(C) Artificial Intelligence</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) Interpreter</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q10. Which language is directly understood by a computer?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, true)">(A) Machine Language</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) Assembly Language</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) High Level Language</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) None of these</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q11. FoxPro, Stata and Oracle are types of which of the following?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) 1GLs</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) 2GLs</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) 3GLs</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(D) 4GLs</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q12. Which of the following is not a third generation language?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) C</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) Oracle</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) C++</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) COBOL</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q13. Windows 10 was launched in which year?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) 2012</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) 2013</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) 2014</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(D) 2015</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q14. Windows 10 biometric login featured has been named:</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) Windows Padlock</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(B) Windows Hello</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(C) Windows Instant</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) Windows Bio</button>
+        </div>
+    </div>
+
+    <div class="quiz-card">
+        <div class="question">Q15. What is the name of new built-in browser included in Windows 10?</div>
+        <div class="options-grid">
+            <button class="option-btn" onclick="checkAnswer(this, false)">(A) Cortana</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(B) Opera</button>
+            <button class="option-btn" onclick="checkAnswer(this, true)">(C) Edge</button>
+            <button class="option-btn" onclick="checkAnswer(this, false)">(D) Super Internet Explorer Pro</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function checkAnswer(button, isCorrect) {
+        // उस प्रश्न के सभी बटन ढूंढें
+        const parent = button.parentElement;
+        const buttons = parent.querySelectorAll('.option-btn');
+        
+        // सभी बटन को डिसेबल करें ताकि दोबारा क्लिक न हो सके
+        buttons.forEach(btn => {
+            btn.classList.add('disabled');
+        });
+
+        if (isCorrect) {
+            button.classList.add('correct');
+        } else {
+            button.classList.add('incorrect');
+            // गलत उत्तर चुनने पर सही उत्तर को भी हाइलाइट करें
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes('true')) {
+                    btn.classList.add('correct');
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
